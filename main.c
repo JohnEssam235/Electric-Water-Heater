@@ -9,8 +9,8 @@ sum+=a[i];
 return sum/n;
 }
 /////* main */////////
-void main() {
-	uint32 temp;  //// temprature from temp_sensor
+void main(){
+        uint32 temp;  //// temprature from temp_sensor
         uint32 reading_1; ///// comparsion between set_temp and average of last 10 tempratures to compare with heat_elemnt
          uint32 reading_2; ///// comparsion between set_temp and average of last 10 tempratures to compare with cool_elemnt
         uint32 result; //// to get average of temperatures
@@ -18,22 +18,22 @@ void main() {
         int i=0; //// counter for "for loop"
         uint32 m=0; //// counter to be sure you read last 10 temperatures
         uint32 set_temp =60;
-	ADC_Init(); /* initialize ADC driver */
-	TRISC=0x00; //// configure portc as output
+        ADC_Init(); /* initialize ADC driver */
+        TRISC=0x00; //// configure portc as output
         PORTC=0x00;
-	while(1){
-	while(1){ //// to be sure that we take last 10 temp
-	if(m==10){
-	break; ///// we will break after taking 10 readings
-	}
-	 temp = ADC_readChannel(0); /* read channel two where the temp sensor is connect */
+        while(1){
+        while(1){ //// to be sure that we take last 10 temp
+        if(m==10){
+        break; ///// we will break after taking 10 readings
+        }
+         temp = ADC_readChannel(5); /* read channel two where the temp sensor is connect */
          temp = (temp*150*5)/(1023*1.5); /* calculate the temp from the ADC value*/
          array[i]=temp;
           delay_ms(100);
          m++;
          i++;
-	}
-	}
+        }
+        }
        result=average(array,10);
          reading_2=result-set_temp;
         if(result<set_temp){
@@ -52,17 +52,17 @@ void main() {
          }
 }
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 /*
  TRISB=0x00;
  PORTB=0x00;
@@ -73,5 +73,3 @@ void main() {
  delay_ms(100);
 }
 */
-	
-	
