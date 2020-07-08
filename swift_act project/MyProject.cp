@@ -26,11 +26,13 @@ void Os_newTimerTick(void);
 void EEPROM_init(void);
 void EEPROM_writeByte(unsigned short my_data,uint8 add);
 uint8 EEPROM_readByte(uint8 add);
-#line 3 "D:/swift_act project/MyProject.c"
+#line 4 "D:/swift_act project/MyProject.c"
+uint8 elec_heater_flag = 0;
+
 void main() {
 
 
- TRISE.RE0 = 1;
+ TRISE.RB5 = 1;
 
 
  TRISD = 0;
@@ -52,6 +54,11 @@ void main() {
  PORTC.RC5 = 0;
 
 
+ while(RB5_bit == 0)
+ {
+
+ }
+ elec_heater_flag = 1;
  Os_start();
 
 
