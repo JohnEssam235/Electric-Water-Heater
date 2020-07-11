@@ -1,75 +1,43 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include<string.h>
 #include "adc.h"
-//////* Function yo get average of array *///////
-uint32 average(int a[],int n){
-int sum=0;
-int i=0;
-for(i=0;i<n;i++){
-sum+=a[i];
-}
-return sum/n;
-}
-/////* main */////////
-void main(){
-        uint32 temp;  //// temprature from temp_sensor
-        uint32 reading_1; ///// comparsion between set_temp and average of last 10 tempratures to compare with heat_elemnt
-         uint32 reading_2; ///// comparsion between set_temp and average of last 10 tempratures to compare with cool_elemnt
-        uint32 result; //// to get average of temperatures
-        uint32 array[10]; ///// array to store last 10 temperatures
-        int i=0; //// counter for "for loop"
-        uint32 m=0; //// counter to be sure you read last 10 temperatures
-        uint32 set_temp =60;
-        ADC_Init(); /* initialize ADC driver */
-        TRISC=0x00; //// configure portc as output
-        PORTC=0x00;
-        while(1){
-        while(1){ //// to be sure that we take last 10 temp
-        if(m==10){
-        break; ///// we will break after taking 10 readings
-        }
-         temp = ADC_readChannel(5); /* read channel two where the temp sensor is connect */
-         temp = (temp*150*5)/(1023*1.5); /* calculate the temp from the ADC value*/
-         array[i]=temp;
-          delay_ms(100);
-         m++;
-         i++;
-        }
-        }
-       result=average(array,10);
-         reading_2=result-set_temp;
-        if(result<set_temp){
-        reading_1=set_temp-result;
-         if(reading_1==5){
-         RC0_bit=1; ////// heat element in pin 0 portc
-         RC1_bit=0; /// close cooling elemnt
-         }
-         }
-         if(result>set_temp){
-          reading_2=result-set_temp;
-          if(reading_2==5){
-         RC1_bit=1; ////// cooling element in pin 1 portc
-         RC0_bit=0;
-         }
-         }
-}
+sbit LCD_RS at RB4_bit;
+sbit LCD_EN at RB5_bit;
+sbit LCD_D4 at RB0_bit;
+sbit LCD_D5 at RB1_bit;
+sbit LCD_D6 at RB2_bit;
+sbit LCD_D7 at RB3_bit;
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+sbit LCD_RS_Direction at TRISB4_bit;
+sbit LCD_EN_Direction at TRISB5_bit;
+sbit LCD_D4_Direction at TRISB0_bit;
+sbit LCD_D5_Direction at TRISB1_bit;
+sbit LCD_D6_Direction at TRISB2_bit;
+sbit LCD_D7_Direction at TRISB3_bit;
+
+
+void main(void) {
+uint32 temp;
+uint32 teemp[20];
 /*
- TRISB=0x00;
- PORTB=0x00;
- for(;;){
- RB0_bit=1;
- delay_ms(100);
- RB0_bit=0;
- delay_ms(100);
+  ANSELL  = 0;                        // Configure AN pins as digital I/O
+  ANSELH = 0;
+  C1ON_bit = 0;                      // Disable comparators
+  C2ON_bit = 0;
+  */
+  LCD_Init();
+  ADC_Init1();
+  Lcd_Cmd(_LCD_CLEAR);
+  Lcd_Cmd(_LCD_CURSOR_OFF);
+  Lcd_Out(1, 1, "Temp = ");
+  while(1)
+  {
+  temp = ADC_readChannel(2); /* read channel two where the temp sensor is connect */
+  temp = (temp*150*5)/(1023*1.5); /* calculate the temp from the ADC value*/
+  FloatToStr(temp,teemp);
+  Lcd_Out(1, 7, teemp);
+  
+  }
+
 }
-*/

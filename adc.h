@@ -13,7 +13,7 @@
  * Description :
  * Function responsible for initialize the ADC driver.
  */
-void ADC_init(void);
+void ADC_Init1(void);
 
 /*
  * Description :
