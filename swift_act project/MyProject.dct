@@ -173,6 +173,7 @@ acken_bit
 ackstat
 ackstat_bit
 acos
+adc_flag
 adc_get_sample
 adc_get_sample_ptr
 adc_init
@@ -331,6 +332,8 @@ cos
 cose3
 cosh
 count
+counto
+countoo
 cren
 cren_bit
 csrc
@@ -385,6 +388,7 @@ div_32x32_s
 div_32x32_u
 div_8x8_s
 div_8x8_u
+dodo
 double2byte
 double2int
 double2longint
@@ -431,6 +435,8 @@ fabs
 ferr
 ferr_bit
 fixsign32
+flago
+flagoz
 flash_read
 flash_write
 floattostr
@@ -492,6 +498,7 @@ go_not_done_bit
 halfbits
 heat_elem_flag
 heater_led_task
+heater_task
 i2c_is_idle
 i2c_is_idle_ptr
 i2c_read
@@ -1113,6 +1120,7 @@ sqrt
 srand
 sren
 sren_bit
+ssd_blinking
 ssd_flag
 ssd_task
 sspadd
@@ -1219,10 +1227,12 @@ t6963c_writecommand
 t6963c_writedata
 tan
 tanh
+temp_var
 temp1
 temp2
 time_datetoepoch
 time_epochtodate
+time_flag
 time_jd1970
 timer1_setcallback
 timer1_start
@@ -1366,6 +1376,7 @@ uart1_write
 uart1_write_text
 uldiv
 up_down_buttontask
+up_down_buttontask2
 vdelay_advanced_ms
 vdelay_ms
 vref_mask

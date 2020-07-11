@@ -1,27 +1,28 @@
 main
 	__CC2DW
 		____DoICP
+	EEPROM_init
+		I2C1_Init
+	EEPROM_readByte
+		I2C1_Start
+			I2C1_Is_Idle
+			____DoIFC
+		I2C1_Wr
+			____DoIFC
+		I2C1_Repeated_Start
+			____DoIFC
+		I2C1_Rd
+			____DoIFC
+		I2C1_Stop
 	Os_start
 		Timer1_start
 		Init_Task
 			ADC_Init
-			EEPROM_init
-				I2C1_Init
 		Os_scheduler
-			up_down_ButtonTask
-				EEPROM_writeByte
-					I2C1_Start
-						I2C1_Is_Idle
-						____DoIFC
-					I2C1_Wr
-						____DoIFC
-					I2C1_Stop
 			SSD_TASK
 			ADC_Task
 				ADC_Read
 					Delay_22us
-				Div_16X16_U
-				Mul_8X8_U
 				Mul_16X16_U
 				word2double
 					NRM3232
@@ -35,6 +36,28 @@ main
 					SETFUN32
 				double2word
 					SETIOV3224
+				Div_16X16_U
+				Div_8X8_U
+			heater_task
+			up_down_ButtonTask
+				EEPROM_writeByte
+					I2C1_Start
+						I2C1_Is_Idle
+						____DoIFC
+					I2C1_Wr
+						____DoIFC
+					I2C1_Stop
+				Mul_8X8_U
+			up_down_ButtonTask2
+				EEPROM_writeByte
+					I2C1_Start
+						I2C1_Is_Idle
+						____DoIFC
+					I2C1_Wr
+						____DoIFC
+					I2C1_Stop
+				Mul_8X8_U
+			SSD_blinking
 			Heater_Led_Task
 interrupt
 	Os_newTimerTick

@@ -26,24 +26,39 @@ void Os_newTimerTick(void);
 void EEPROM_init(void);
 void EEPROM_writeByte(unsigned short my_data,uint8 add);
 uint8 EEPROM_readByte(uint8 add);
-#line 4 "D:/swift_act project/MyProject.c"
+#line 1 "d:/swift act files/common_macros.h"
+#line 5 "D:/swift_act project/MyProject.c"
 uint8 elec_heater_flag = 0;
-
+uint8 temp1;
+uint8 temp2;
 void main() {
+ uint8 current_one;
+ EEPROM_init();
 
 
- TRISE.RB5 = 1;
+ delay_ms(10);
 
 
- TRISD = 0;
 
 
  TRISB.RB0 = 1;
+  (INTCON|=(1<<7)) ;
+  (INTCON|=(1<<6)) ;
+
+
+ TRISD = 0;
+ TRISA.RA4 = 0;
+ TRISA.RA5 = 0;
+
+
+
  TRISB.RB1 = 1;
+ TRISB.RB2 = 1;
 
 
- TRISB.RB2 = 0;
- PORTB.RB2 = 0;
+
+ TRISB.RB7 = 0;
+ PORTB.RB7 = 0;
 
 
  TRISC.RC2 = 0;
@@ -54,11 +69,28 @@ void main() {
  PORTC.RC5 = 0;
 
 
- while(RB5_bit == 0)
- {
 
- }
+
+
+ ADCON0 = 0x91;
+ ADCON1 = 0xC0;
+
+ TRISB.RB6 = 0;
+ PORTB.RB6 = 1;
+ while(RB0_bit == 1);
  elec_heater_flag = 1;
+ delay_ms(300);
+ current_one = EEPROM_readByte(2);
+ if(current_one == 0)
+ {
+ temp1 = 6;
+ temp2 = 0;
+ }
+ else
+ {
+ temp1 = EEPROM_readByte(2);
+ temp2 = EEPROM_readByte(3);
+ }
  Os_start();
 
 
