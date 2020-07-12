@@ -67,6 +67,7 @@ void main() {
  PORTC.RC5 = 0;
 
  while(RB0_bit == 1);
+ delay_ms(200);
  elec_heater_flag = 1;
  current_state = EEPROM_readByte(2);
  if(current_state == 0)

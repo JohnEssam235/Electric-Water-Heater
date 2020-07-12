@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=..\swift act files\app.c
+Value=MyProject.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -30,8 +30,8 @@ ActiveImageIndex=-1
 [OPENED_FILES]
 Count=3
 File0=..\swift act files\app.c
-File1=..\timer 55555\MyProject.c
-File2=C:\Users\jojoe\OneDrive\Desktop\test_adc\MyProject.c
+File1=C:\Users\jojoe\OneDrive\Desktop\test_adc\MyProject.c
+File2=MyProject.c
 [EEPROM]
 Count=0
 [ACTIVE_COMMENTS_FILES]

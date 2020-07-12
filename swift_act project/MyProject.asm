@@ -29,6 +29,19 @@ L_main1:
 	GOTO       L_main2
 	GOTO       L_main1
 L_main2:
+	MOVLW      3
+	MOVWF      R11+0
+	MOVLW      8
+	MOVWF      R12+0
+	MOVLW      119
+	MOVWF      R13+0
+L_main3:
+	DECFSZ     R13+0, 1
+	GOTO       L_main3
+	DECFSZ     R12+0, 1
+	GOTO       L_main3
+	DECFSZ     R11+0, 1
+	GOTO       L_main3
 	MOVLW      1
 	MOVWF      _elec_heater_flag+0
 	MOVLW      2
@@ -37,12 +50,12 @@ L_main2:
 	MOVF       R0+0, 0
 	XORLW      0
 	BTFSS      STATUS+0, 2
-	GOTO       L_main3
+	GOTO       L_main4
 	MOVLW      6
 	MOVWF      _temp1+0
 	CLRF       _temp2+0
-	GOTO       L_main4
-L_main3:
+	GOTO       L_main5
+L_main4:
 	MOVLW      2
 	MOVWF      FARG_EEPROM_readByte_add+0
 	CALL       _EEPROM_readByte+0
@@ -53,7 +66,7 @@ L_main3:
 	CALL       _EEPROM_readByte+0
 	MOVF       R0+0, 0
 	MOVWF      _temp2+0
-L_main4:
+L_main5:
 	CALL       _Os_start+0
 L_end_main:
 	GOTO       $+0
