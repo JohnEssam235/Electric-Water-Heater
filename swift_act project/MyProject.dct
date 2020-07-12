@@ -333,7 +333,6 @@ cose3
 cosh
 count
 counto
-countoo
 cren
 cren_bit
 csrc
@@ -394,6 +393,7 @@ double2int
 double2longint
 double2longword
 double2word
+down_buttontask
 eeadr
 eeadrh
 eecon1
@@ -435,8 +435,6 @@ fabs
 ferr
 ferr_bit
 fixsign32
-flago
-flagoz
 flash_read
 flash_write
 floattostr
@@ -488,7 +486,6 @@ glcd_write_data
 glcd_write_text
 glcd_write_text_adv
 glcd_write_text_return_pos
-global
 go
 go_bit
 go_done
@@ -567,6 +564,7 @@ lcd_out
 lcd_out_cp
 ldexp
 ldiv
+led_count
 log
 log10
 longint2double
@@ -914,7 +912,6 @@ setfdz32
 setfov32
 setfun32
 setiov3224
-setmode_flag
 shorttohex
 shorttostr
 shorttostrwithzeros
@@ -1121,6 +1118,9 @@ srand
 sren
 sren_bit
 ssd_blinking
+ssd_blinking_counter
+ssd_blinking_flag
+ssd_enable_flag
 ssd_flag
 ssd_task
 sspadd
@@ -1234,7 +1234,6 @@ time_datetoepoch
 time_epochtodate
 time_flag
 time_jd1970
-timer1_setcallback
 timer1_start
 tmr0
 tmr0ie
@@ -1375,8 +1374,7 @@ uart1_tx_idle
 uart1_write
 uart1_write_text
 uldiv
-up_down_buttontask
-up_down_buttontask2
+up_buttontask
 vdelay_advanced_ms
 vdelay_ms
 vref_mask

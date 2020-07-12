@@ -17,18 +17,20 @@ main
 	Os_start
 		Timer1_start
 		Init_Task
-			ADC_Init
 		Os_scheduler
 			SSD_TASK
 			ADC_Task
 				ADC_Read
 					Delay_22us
-				Mul_16X16_U
 				word2double
 					NRM3232
 						RES032
 						SETFUN32
 						FIXSIGN32
+				Mul_32x32_FP
+					RES032
+					SETFOV32
+					SETFUN32
 				Div_32x32_FP
 					SETFDZ32
 					RES032
@@ -39,7 +41,7 @@ main
 				Div_16X16_U
 				Div_8X8_U
 			heater_task
-			up_down_ButtonTask
+			up_ButtonTask
 				EEPROM_writeByte
 					I2C1_Start
 						I2C1_Is_Idle
@@ -48,7 +50,7 @@ main
 						____DoIFC
 					I2C1_Stop
 				Mul_8X8_U
-			up_down_ButtonTask2
+			down_ButtonTask
 				EEPROM_writeByte
 					I2C1_Start
 						I2C1_Is_Idle
@@ -59,5 +61,16 @@ main
 				Mul_8X8_U
 			SSD_blinking
 			Heater_Led_Task
+			EEPROM_readByte
+				I2C1_Start
+					I2C1_Is_Idle
+					____DoIFC
+				I2C1_Wr
+					____DoIFC
+				I2C1_Repeated_Start
+					____DoIFC
+				I2C1_Rd
+					____DoIFC
+				I2C1_Stop
 interrupt
 	Os_newTimerTick

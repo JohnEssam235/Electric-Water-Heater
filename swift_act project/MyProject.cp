@@ -31,19 +31,17 @@ uint8 EEPROM_readByte(uint8 add);
 uint8 elec_heater_flag = 0;
 uint8 temp1;
 uint8 temp2;
+
 void main() {
- uint8 current_one;
+
+
+ uint8 current_state;
  EEPROM_init();
-
-
+#line 16 "D:/swift_act project/MyProject.c"
  delay_ms(10);
 
 
-
-
  TRISB.RB0 = 1;
-  (INTCON|=(1<<7)) ;
-  (INTCON|=(1<<6)) ;
 
 
  TRISD = 0;
@@ -68,20 +66,10 @@ void main() {
  TRISC.RC5 = 0;
  PORTC.RC5 = 0;
 
-
-
-
-
- ADCON0 = 0x91;
- ADCON1 = 0xC0;
-
- TRISB.RB6 = 0;
- PORTB.RB6 = 1;
  while(RB0_bit == 1);
  elec_heater_flag = 1;
- delay_ms(300);
- current_one = EEPROM_readByte(2);
- if(current_one == 0)
+ current_state = EEPROM_readByte(2);
+ if(current_state == 0)
  {
  temp1 = 6;
  temp2 = 0;
